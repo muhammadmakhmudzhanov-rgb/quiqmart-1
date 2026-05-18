@@ -83,7 +83,7 @@ const handleFile = (e: Event) => {
 const login = async () => {
   message.value = ''
 
-  const res = await fetch(`http://${usestore.text}/login`, {
+  const res = await fetch(`https://${usestore.text}/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -125,7 +125,7 @@ const register = async () => {
       formData.append('avatar', file.value)
     }
 
-    const res = await fetch(`http://${usestore.text}/register`, {
+    const res = await fetch(`https://${usestore.text}/register`, {
       method: 'POST',
       body: formData
     })

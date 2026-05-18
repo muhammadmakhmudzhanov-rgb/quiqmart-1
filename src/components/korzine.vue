@@ -29,7 +29,7 @@ const arr: Ref<CartItem[]> = ref([]);
 const total = ref(0);
 const getfunction = async () => {
   try {
-    const response = await fetch(`http://${usestore.text}/cart`, {
+    const response = await fetch(`https://${usestore.text}/cart`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const getfunction = async () => {
 const increase = async (cart: CartItem) => {
   load.value = true
   try {
-    await fetch(`http://${usestore.text}/cart/${cart.id}/increase`, {
+    await fetch(`https://${usestore.text}/cart/${cart.id}/increase`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const decrease = async (cart: CartItem) => {
   try {
     if (cart.quantity <= 1) return; // ❗ чтобы не ушло в 0
 
-    await fetch(`http://${usestore.text}/cart/${cart.id}/decrease`, {
+    await fetch(`https://${usestore.text}/cart/${cart.id}/decrease`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ const decrease = async (cart: CartItem) => {
 const deletefunction = async (cart: CartItem) => {
   try {
 
-    await fetch(`http://${usestore.text}/cart/${cart.id}`, {
+    await fetch(`https://${usestore.text}/cart/${cart.id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ const deletefunction = async (cart: CartItem) => {
 };
 const checkout = async () => {
   try {
-    const response = await fetch(`http://${usestore.text}/orders`, {
+    const response = await fetch(`https://${usestore.text}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ const checkout = async () => {
 
 const deletekorzine = async () => {
   try {
-    await fetch(`http://${usestore.text}/cart`, {
+    await fetch(`https://${usestore.text}/cart`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

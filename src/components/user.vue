@@ -20,7 +20,7 @@ const formatPrice = (value: number) => {
 
 
 const buyItem = async (itemId: number) => {
-  await fetch(`http://${usestore.text}/cart`, {
+  await fetch(`https://${usestore.text}/cart`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

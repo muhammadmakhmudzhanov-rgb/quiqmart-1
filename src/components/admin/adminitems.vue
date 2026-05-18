@@ -19,7 +19,7 @@ const users = ref<User[]>([]);
 
 const getadminitems = async () => {
   try {
-    const response = await fetch(`http://${usestore.text}/admin/items`, {
+    const response = await fetch(`https://${usestore.text}/admin/items`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const getadminitems = async () => {
 };
 const Deleteadminitems = async (id: number) => {
   try {
-    await fetch(`http://${usestore.text}/admin/items/${id}`, {
+    await fetch(`https://${usestore.text}/admin/items/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

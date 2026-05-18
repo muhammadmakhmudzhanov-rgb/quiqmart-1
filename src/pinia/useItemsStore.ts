@@ -5,14 +5,14 @@ import Cookies from 'js-cookie';
 const token = Cookies.get('token');
 export const useMainStore = defineStore('main', () => {
 
-  const text = ref('192.168.99.105:3000')
+  const text = import.meta.env.VITE_API_URL
   const cartCount = ref(0)
   const loadingsupp = ref(false)
   const getCartCount = async () => {
     try {
       const token = Cookies.get('token') // 🔥 ВОТ СЮДА
   
-      const res = await fetch(`http://${text.value}/cart`, {
+      const res = await fetch(`https://${text}/cart`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
@@ -56,7 +56,7 @@ export const useMainStore = defineStore('main', () => {
   const getfunction = async () => {
     loadingsupp.value = true
     try {
-      const response = await fetch(`http://${text.value}/items`, {
+      const response = await fetch(`https://${text}/items`, {
         method: 'GET',
               headers: {
                   'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export const useMainStore = defineStore('main', () => {
   const admintrue = ref(false)
   const getadmin = async () => {
     try {
-      const response = await fetch(`http://${text.value}/admin/test`, {
+      const response = await fetch(`https://${text}/admin/test`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

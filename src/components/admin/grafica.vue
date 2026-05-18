@@ -49,7 +49,7 @@ const loadStats = async () => {
     loading.value = true
 
     const res = await fetch(
-      `http://${usestore.text}/seller/stats`,
+      `https://${usestore.text}/seller/stats`,
       {
         headers: {
           Authorization: `Bearer ${token}`

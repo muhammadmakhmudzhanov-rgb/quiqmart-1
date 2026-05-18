@@ -19,7 +19,7 @@ const register = async () => {
   ojidanie.value = true
   try {
 
-    const res = await fetch(`http://${usestore.text}/login`, {
+    const res = await fetch(`https://${usestore.text}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

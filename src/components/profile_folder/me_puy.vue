@@ -29,7 +29,7 @@ interface Order {
 const arr = ref<Order[]>([])
 const getfunction = async () => {
   try {
-    const response = await fetch(`http://${usestore.text}/orders`, {
+    const response = await fetch(`https://${usestore.text}/orders`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

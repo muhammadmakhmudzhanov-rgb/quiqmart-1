@@ -48,7 +48,7 @@ const chatLoading = ref(false)
 
 
 const getMe = async () => {
-  const res = await fetch(`http://${usestore.text}/me`, {
+  const res = await fetch(`https://${usestore.text}/me`, {
     headers: {
       Authorization: `Bearer ${usestore.token}`,
     },
@@ -61,7 +61,7 @@ const getMe = async () => {
    📡 GET CHATS
 ========================= */
 const getchat = async () => {
-  const res = await fetch(`http://${usestore.text}/chats`, {
+  const res = await fetch(`https://${usestore.text}/chats`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${usestore.token}`,
@@ -80,7 +80,7 @@ const openChat = async (chat: Chat) => {
     showChat.value = true
   }
   const res = await fetch(
-    `http://${usestore.text}/chat/${chat.id}/messages`,
+    `https://${usestore.text}/chat/${chat.id}/messages`,
     {
       headers: {
         Authorization: `Bearer ${usestore.token}`,
@@ -113,7 +113,7 @@ const sendMessage = async () => {
   const messageText = text.value;
   text.value = "";
 
-  await fetch(`http://${usestore.text}/chat/${activeChat.value.id}/message`, {
+  await fetch(`https://${usestore.text}/chat/${activeChat.value.id}/message`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

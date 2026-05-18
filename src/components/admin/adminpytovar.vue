@@ -36,7 +36,7 @@ const soldItems: Ref<SoldItem[]> = ref([]);
 
 
 const buyItemget = async () => {
-  const res = await fetch(`http://${usestore.text}/seller/sold-items`, {
+  const res = await fetch(`https://${usestore.text}/seller/sold-items`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

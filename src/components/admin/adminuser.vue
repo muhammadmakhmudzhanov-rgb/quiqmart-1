@@ -28,7 +28,7 @@ const selectedUser: Ref<User | null> = ref(null);
 
 const getadminuser = async () => {
     try {
-        const response = await fetch(`http://${usestore.text}/admin/users`, {
+        const response = await fetch(`https://${usestore.text}/admin/users`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const getadminuser = async () => {
 };
 const changeRole = async (user: User, role: string) => {
     try {
-        await fetch(`http://${usestore.text}/admin/users/${user.id}/role`, {
+        await fetch(`https://${usestore.text}/admin/users/${user.id}/role`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const changeRole = async (user: User, role: string) => {
 }
 const deleteadmin = async (user: User) => {
     try {
-        await fetch(`http://${usestore.text}/admin/users/${user.id}`, {
+        await fetch(`https://${usestore.text}/admin/users/${user.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

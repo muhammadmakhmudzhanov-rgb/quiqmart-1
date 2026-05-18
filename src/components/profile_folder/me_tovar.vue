@@ -12,6 +12,7 @@ const extraPreviews = ref<string[]>([]);
 const showPhotoModal = ref(false);
 const extraItemId = ref<number | null>(null);
 
+const fileInput = ref<HTMLInputElement | null>(null)
 
 
 
@@ -162,7 +163,7 @@ const uploadExtraPhotos = async () => {
       formData.append('images', file); // важно: одинаковый ключ
     });
 
-    await fetch(`http://${usestore.text}/items/${extraItemId.value}/images`, {
+    await fetch(`https://${usestore.text}/items/${extraItemId.value}/images`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -277,7 +278,7 @@ onBeforeMount(() => {
 
     <div class="upload-grid">
   <!-- ➕ Кнопка добавления -->
-  <div class="upload-tile" @click="$refs.fileInput.click()">
+  <div class="upload-tile" @click="fileInput?.click()">
     <span class="plus">+</span>
   </div>
 </div>

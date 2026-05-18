@@ -28,7 +28,7 @@ const arr: Ref<Item | null> = ref(null);
 
 const getfunction = async () => {
     try {
-        const response = await fetch(`http://${usestore.text}/me`, {
+        const response = await fetch(`https://${usestore.text}/me`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const getfunction = async () => {
 const admin = ref(false)
 const getadmin = async () => {
   try {
-    const response = await fetch(`http://${usestore.text}/admin/test`, {
+    const response = await fetch(`https://${usestore.text}/admin/test`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

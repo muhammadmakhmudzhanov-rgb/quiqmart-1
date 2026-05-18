@@ -73,14 +73,13 @@ const postfunction = async () => {
 
   // 📸 главное фото
   formData.append('image', file.value);
-
   // 📸 дополнительные фото
   extraFiles.value.forEach((img) => {
     formData.append('images', img);
   });
 
   try {
-    await fetch(`http://${usestore.text}/items`, {
+    await fetch(`https://${usestore.text}/items`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`

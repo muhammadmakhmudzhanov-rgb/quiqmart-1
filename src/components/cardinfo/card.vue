@@ -56,7 +56,7 @@ const formatPrice = (value: number) => {
 
 const getItem = async (id: number) => {
     try {
-        const res = await fetch(`http://${usestore.text}/items/${id}`)
+        const res = await fetch(`https://${usestore.text}/items/${id}`)
 
         const data = await res.json()
 
@@ -74,7 +74,7 @@ const getItem = async (id: number) => {
 }
 const getarr = async (id: number) => {
     try {
-        const res = await fetch(`http://${usestore.text}/items/${id}/recommend`)
+        const res = await fetch(`https://${usestore.text}/items/${id}/recommend`)
 
         const data = await res.json()
 
@@ -87,7 +87,7 @@ const getarr = async (id: number) => {
 }
 
 const buyItem = async () => {
-    await fetch(`http://${usestore.text}/cart`, {
+    await fetch(`https://${usestore.text}/cart`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const chatvibor = async () => {
         return
     }
 
-    const res = await fetch(`http://${usestore.text}/chat/find`, {
+    const res = await fetch(`https://${usestore.text}/chat/find`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
