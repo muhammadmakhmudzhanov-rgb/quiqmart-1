@@ -170,13 +170,13 @@ onBeforeMount(async () => {
                 <div v-if="item?.images?.length" class="item-gallery">
                     <div class="item-thumbs">
                         <img v-for="(img, index) in item.images" :key="index" :src="`http://${host}${img}`"
-                            @click="current = index" :class="{ active: current === index }" />
+                        @click="current = Number(index)" :class="{ active: current === index }" />
                     </div>
                 </div>
                 <!-- 📸 КАРТИНКА -->
                 <div class="left">
                     <div class="img-wrap">
-                        <img :src="`http://${usestore.text}${item.images?.[current]}`" class="img" @click="openimage" />
+                        <img :src="`https://${usestore.text}${item.images?.[current]}`" class="img" @click="openimage" />
                     </div>
                 </div>
 
