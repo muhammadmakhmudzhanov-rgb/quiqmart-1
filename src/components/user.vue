@@ -89,7 +89,7 @@ onBeforeMount(async () => {
             <span v-if="item.oldPrice" class="old">
               {{ formatPrice(item.oldPrice) }} сом
             </span>
-
+            
             <span v-if="item.discount" class="discount">
               -{{ item.discount }}%
             </span>

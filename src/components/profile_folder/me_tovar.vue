@@ -31,7 +31,7 @@ const arr: Ref<Item[]> = ref([]);
 
 const getfunction = async () => {
   try {
-    const response = await fetch(`http://${usestore.text}/my-items`, {
+    const response = await fetch(`https://${usestore.text}/my-items`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const getfunction = async () => {
 
 const deletefunctionitem = async () => {
   try {
-    const response = await fetch(`http://${usestore.text}/items/${deleteId.value}`, {
+    const response = await fetch(`https://${usestore.text}/items/${deleteId.value}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const putfunctionitem = async () => {
       formData.append('image', file.value);
     }
 
-    const response = await fetch(`http://${usestore.text}/items/${currentId.value}`, {
+    const response = await fetch(`https://${usestore.text}/items/${currentId.value}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -125,7 +125,7 @@ const modal = (item: Item) => {
   name.value = item.name;
   price.value = item.price;
   description.value = item.description;
-  preview.value = `http://${usestore.text}${item.image}`;
+  preview.value = `https://${usestore.text}${item.image}`;
 }
 
 const showLogoutModal = ref(false);
@@ -194,7 +194,7 @@ onBeforeMount(() => {
     <div class="grid">
       <div class="card" v-for="item in arr">
         <div class="img-box">
-          <img :src="`http://${usestore.text}${item.image}`" alt="" />
+          <img :src="`https://${usestore.text}${item.image}`" alt="" />
         </div>
 
         <div class="content">

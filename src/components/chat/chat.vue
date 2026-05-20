@@ -8,7 +8,7 @@ const usestore = useMainStore();
 
 const router = useRouter();
 
-const socket = io(`http://${usestore.text}`)
+const socket = io(`https://${usestore.text}`)
 
 interface Chat {
   id: number;

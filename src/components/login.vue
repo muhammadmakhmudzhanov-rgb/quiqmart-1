@@ -57,6 +57,10 @@ const register = async () => {
     }
 
 }
+
+if (token) {
+  router.push('/user');
+}
 </script>
 
 <template>
