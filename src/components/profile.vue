@@ -817,7 +817,7 @@ onBeforeMount(() => {
     }
 }
 .edit-avatar-btn {
-    margin-top: 10px;
+
     padding: 8px 12px;
     border-radius: 10px;
     border: 1px solid #6366f1;
@@ -825,7 +825,7 @@ onBeforeMount(() => {
     color: #6366f1;
     cursor: pointer;
     transition: 0.2s;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .edit-avatar-btn:hover {
