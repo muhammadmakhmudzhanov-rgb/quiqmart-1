@@ -15,6 +15,8 @@ const router = useRouter();
 const token = Cookies.get('token');
 const content = ref(0)
 const yes = ref(true)
+const showEditAvatar = ref(false)
+const selectedFile = ref<File | null>(null)
 
 
 
@@ -45,31 +47,63 @@ const getfunction = async () => {
 
 const admin = ref(false)
 const getadmin = async () => {
-  try {
-    const response = await fetch(`https://${usestore.text}/admin/test`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    try {
+        const response = await fetch(`https://${usestore.text}/admin/test`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
-    const data = await response.json();
+        const data = await response.json();
 
-    console.log('STATUS:', response.status);
-    console.log('DATA:', data);
-    if (response.ok) {
-        admin.value = true
-        
+        console.log('STATUS:', response.status);
+        console.log('DATA:', data);
+        if (response.ok) {
+            admin.value = true
+
+        }
+
+    } catch (error) {
+        console.error(error);
     }
-
-  } catch (error) {
-    console.error(error);
-  }
 };
 
 
+const openEditAvatar = () => {
+    showEditAvatar.value = true
+}
 
+const closeEditAvatar = () => {
+    showEditAvatar.value = false
+    selectedFile.value = null
+}
+const onFileChange = (e: Event) => {
+    const target = e.target as HTMLInputElement
+    if (target.files && target.files[0]) {
+        selectedFile.value = target.files[0]
+    }
+}
+const uploadAvatar = async () => {
+    if (!selectedFile.value) return
+
+    const formData = new FormData()
+    formData.append('avatar', selectedFile.value)
+
+    const res = await fetch(`https://${usestore.text}/me`, {
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        body: formData
+    })
+
+    const data = await res.json()
+
+    arr.value = data // обновляем профиль
+    showEditAvatar.value = false
+}
 
 //модальное окно для выхода
 const showLogoutModal = ref(false);
@@ -126,6 +160,9 @@ onBeforeMount(() => {
 
                 <img v-if="arr" :src="`http://${usestore.text}/${arr.avatar}`" class="avatar" @click="openAvatar" />
             </div>
+            <button class="edit-avatar-btn" @click="openEditAvatar">
+                Изменить аватар
+            </button>
 
 
             <!-- 👤 ПРОФИЛЬ -->
@@ -136,30 +173,33 @@ onBeforeMount(() => {
                 <p class="date">
                     Создан: {{ new Date(arr.createdAt).toLocaleString() }}
                 </p>
-                <button class="tabl" :class="{ 'active': content == 3 }" @click="sostoyania" v-if="admin == true">Состояние админ</button>
+                <button class="tabl" :class="{ 'active': content == 3 }" @click="sostoyania" v-if="admin == true">Состояние
+                    админ</button>
             </div>
 
 
             <div class="tabs-wrapper">
-    <div class="tabs-slider" :class="{ active: yes }">
+                <div class="tabs-slider" :class="{ active: yes }">
 
-        <!-- 🟥 админ -->
-        <div class="tabs-block">
-            <button class="tab" :class="{ 'active': content == 4 }" @click="content = 4">Пользователи</button>
-            <button class="tab" :class="{ 'active': content == 6 }" @click="content = 6">Товары</button>
-            <button class="tab" :class="{ 'active': content == 7 }" @click="content = 7">Проданные товары</button>
-            <button class="tab" :class="{ 'active': content == 8 }" @click="content = 8">Аналитика</button>
-        </div>
-        <!-- 🟦 обычные -->
-        <div class="tabs-block">
-            <button class="tab" :class="{ 'active': content == 1 }" @click="content = 1">Добавленные товары</button>
-            <button class="tab" :class="{ 'active': content == 2 }" @click="content = 2">Купленные</button>
-            <RouterLink to="/korzine" class="tab">В корзине</RouterLink>
-        </div>
+                    <!-- 🟥 админ -->
+                    <div class="tabs-block">
+                        <button class="tab" :class="{ 'active': content == 4 }" @click="content = 4">Пользователи</button>
+                        <button class="tab" :class="{ 'active': content == 6 }" @click="content = 6">Товары</button>
+                        <button class="tab" :class="{ 'active': content == 7 }" @click="content = 7">Проданные
+                            товары</button>
+                        <button class="tab" :class="{ 'active': content == 8 }" @click="content = 8">Аналитика</button>
+                    </div>
+                    <!-- 🟦 обычные -->
+                    <div class="tabs-block">
+                        <button class="tab" :class="{ 'active': content == 1 }" @click="content = 1">Добавленные
+                            товары</button>
+                        <button class="tab" :class="{ 'active': content == 2 }" @click="content = 2">Купленные</button>
+                        <RouterLink to="/korzine" class="tab">В корзине</RouterLink>
+                    </div>
 
 
-    </div>
-</div>
+                </div>
+            </div>
             <button class="logout-btn" @click="openLogoutModal">
                 Выйти из аккаунта
             </button>
@@ -196,6 +236,25 @@ onBeforeMount(() => {
     <div v-if="showAvatarModal" class="avatar-modal" @click="closeAvatar">
         <img :src="`http://${usestore.text}/${arr?.avatar}`" class="avatar-full" @click.stop />
     </div>
+    <div v-if="showEditAvatar" class="modal-overlay" @click="closeEditAvatar">
+    <div class="modal" @click.stop>
+
+        <h3>Изменить аватар</h3>
+
+        <input type="file" accept="image/*" @change="onFileChange" />
+
+        <div class="modal-actions">
+            <button class="cancel" @click="closeEditAvatar">
+                Отмена
+            </button>
+
+            <button class="confirm" @click="uploadAvatar" :disabled="!selectedFile">
+                Сохранить
+            </button>
+        </div>
+
+    </div>
+</div>
 </template>
 
 <style scoped>
@@ -322,6 +381,7 @@ onBeforeMount(() => {
 .tab:hover {
     transform: translateY(-2px);
 }
+
 .tabl {
     flex: 1;
     padding: 10px 12px;
@@ -348,6 +408,7 @@ onBeforeMount(() => {
     color: white;
     border-color: #6366f1;
 }
+
 .tabl.active {
     background: #6366f1;
     color: white;
@@ -627,10 +688,11 @@ onBeforeMount(() => {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 
     animation: zoomIn 0.25s ease;
-    cursor:grab;
+    cursor: grab;
 }
-.avatar-full:active{
-    cursor:grabbing;
+
+.avatar-full:active {
+    cursor: grabbing;
 }
 
 /* ✨ анимации */
@@ -728,6 +790,7 @@ onBeforeMount(() => {
         min-width: 130px;
     }
 }
+
 @media (min-width: 900px) {
     .tabs-block {
         justify-content: center;
@@ -752,5 +815,20 @@ onBeforeMount(() => {
         width: 450px;
         height: 450px;
     }
+}
+.edit-avatar-btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #6366f1;
+    background: white;
+    color: #6366f1;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.edit-avatar-btn:hover {
+    background: #6366f1;
+    color: white;
 }
 </style>

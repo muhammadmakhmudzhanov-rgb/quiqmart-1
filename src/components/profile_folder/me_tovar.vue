@@ -277,7 +277,7 @@ onBeforeMount(() => {
     <h3>Добавить фото</h3>
 
     <div class="upload-grid">
-  <!-- ➕ Кнопка добавления -->
+ 
   <div class="upload-tile" @click="fileInput?.click()">
     <span class="plus">+</span>
   </div>
