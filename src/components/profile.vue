@@ -825,6 +825,7 @@ onBeforeMount(() => {
     color: #6366f1;
     cursor: pointer;
     transition: 0.2s;
+    margin: 0 auto;
 }
 
 .edit-avatar-btn:hover {
