@@ -160,9 +160,12 @@ onBeforeMount(() => {
 
                 <img v-if="arr" :src="`http://${usestore.text}/${arr.avatar}`" class="avatar" @click="openAvatar" />
             </div>
-            <button class="edit-avatar-btn" @click="openEditAvatar">
-                Изменить аватар
-            </button>
+            <div class="block">
+
+                <button class="edit-avatar-btn" @click="openEditAvatar">
+                    Изменить аватар
+                </button>
+            </div>
 
 
             <!-- 👤 ПРОФИЛЬ -->
@@ -815,6 +818,11 @@ onBeforeMount(() => {
         width: 450px;
         height: 450px;
     }
+}
+.block{
+    display: flex;
+    justify-content: center;
+    
 }
 .edit-avatar-btn {
 
