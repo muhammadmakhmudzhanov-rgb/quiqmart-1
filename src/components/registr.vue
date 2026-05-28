@@ -206,10 +206,8 @@ if (token) {
       </form>
     </div>
   </div>
-  <div v-if="ojidanie == true" class="load">
-
-    <loadingsupper  ></loadingsupper>
-  </div>
+  <div v-if="ojidanie == true" class="load_block"></div>
+  <loadingsupper v-if="ojidanie == true" class="load" ></loadingsupper>
 </template>
 
 <style scoped>
@@ -234,7 +232,14 @@ if (token) {
   position: fixed;
   top: 50%;
   left: 50%;
+  z-index: 999;
+}
+.load_block{
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-color: #fff;
+  z-index: 333;
 }
 
 
