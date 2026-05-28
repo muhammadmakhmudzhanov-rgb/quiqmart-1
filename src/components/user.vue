@@ -79,7 +79,7 @@ onBeforeMount(async () => {
     <div class="grid">
       <div class="card" v-for="item in usestore.postListFilter">
         <RouterLink :to="`/card${item.id}`" class="img-box" @click="usestore.search = ''">
-          <img :src="`https://${usestore.text}${item.image}`" alt="" />
+          <img :src="`http://${usestore.text}${item.image}`" alt="" />
         </RouterLink>
 
         <div class="content">
