@@ -86,7 +86,9 @@ const onFileChange = (e: Event) => {
     }
 }
 const uploadAvatar = async () => {
-    if (!selectedFile.value) return
+    try {
+
+        if (!selectedFile.value) return
 
     const formData = new FormData()
     formData.append('avatar', selectedFile.value)
@@ -103,6 +105,13 @@ const uploadAvatar = async () => {
 
     arr.value = data // обновляем профиль
     showEditAvatar.value = false
+
+
+    getfunction()
+    } catch (error) {
+        
+    }
+    
 }
 
 //модальное окно для выхода
