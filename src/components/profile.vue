@@ -167,7 +167,7 @@ onBeforeMount(() => {
             <!-- 🔷 ЛОГО -->
             <div class="logo">
 
-                <img v-if="arr" :src="`http://${usestore.text}${arr.avatar}`" class="avatar" @click="openAvatar" />
+                <img v-if="arr" :src="`http://${usestore.text}/${arr.avatar}`" class="avatar" @click="openAvatar" />
             </div>
             <div class="block">
 
