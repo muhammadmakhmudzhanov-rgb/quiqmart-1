@@ -235,8 +235,6 @@ if (token) {
   top: 50%;
   left: 50%;
   background-color: #fff;
-  width: 100%;
-  height: 100%;
 }
 
 
