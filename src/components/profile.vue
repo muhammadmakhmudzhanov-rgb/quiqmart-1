@@ -246,7 +246,7 @@ onBeforeMount(() => {
         </div>
     </div>
     <div v-if="showAvatarModal" class="avatar-modal" @click="closeAvatar">
-        <img :src="`http://${usestore.text}/${arr?.avatar}`" class="avatar-full" @click.stop />
+        <img :src="`https://${usestore.text}/${arr?.avatar}`" class="avatar-full" @click.stop />
     </div>
     <div v-if="showEditAvatar" class="modal-overlay" @click="closeEditAvatar">
     <div class="modal" @click.stop>
