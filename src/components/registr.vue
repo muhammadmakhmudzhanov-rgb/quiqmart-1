@@ -18,7 +18,6 @@ const passwordError = ref('')
 const nameError = ref('')
 const avatarError = ref('')
 const ojidanie = ref(false)
-const loadingsupp = ref(false)
 
 const validate = () => {
   let valid = true
@@ -84,8 +83,9 @@ const handleFile = (e: Event) => {
 }
 const login = async () => {
   message.value = ''
-
-  const res = await fetch(`https://${usestore.text}/login`, {
+  ojidanie.value = true
+  try {
+    const res = await fetch(`https://${usestore.text}/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -109,9 +109,15 @@ const login = async () => {
 
   email.value = ''
   password.value = ''
+  } catch (error) {
+    
+  }  finally {
+    ojidanie.value = false
+  }
+
+  
 }
 const register = async () => {
-  loadingsupp.value = true
   try {
     message.value = ''
     ojidanie.value = true
@@ -153,7 +159,7 @@ const register = async () => {
     console.error(error)
   }
   finally {
-    loadingsupp.value = false
+    ojidanie.value = false
   }
 }
 
@@ -200,7 +206,10 @@ if (token) {
       </form>
     </div>
   </div>
-  <loadingsupper v-if="loadingsupp == true" class="load"></loadingsupper>
+  <div v-if="ojidanie == true" class="load">
+
+    <loadingsupper  ></loadingsupper>
+  </div>
 </template>
 
 <style scoped>
@@ -225,6 +234,7 @@ if (token) {
   position: fixed;
   top: 50%;
   left: 50%;
+  background-color: #fff;
 }
 
 
