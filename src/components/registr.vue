@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRouter } from "vue-router";
 import { useMainStore } from "../pinia/useItemsStore";
 import Cookies from "js-cookie";
+import loadingsupper from "../components/loadingsupper.vue";
 
 const usestore = useMainStore()
 const router = useRouter();
@@ -17,6 +18,7 @@ const passwordError = ref('')
 const nameError = ref('')
 const avatarError = ref('')
 const ojidanie = ref(false)
+const loadingsupp = ref(false)
 
 const validate = () => {
   let valid = true
@@ -109,6 +111,7 @@ const login = async () => {
   password.value = ''
 }
 const register = async () => {
+  loadingsupp.value = true
   try {
     message.value = ''
     ojidanie.value = true
@@ -150,7 +153,7 @@ const register = async () => {
     console.error(error)
   }
   finally {
-    ojidanie.value = false
+    loadingsupp.value = false
   }
 }
 
@@ -197,6 +200,7 @@ if (token) {
       </form>
     </div>
   </div>
+  <loadingsupper v-if="loadingsupp == true" class="load"></loadingsupper>
 </template>
 
 <style scoped>
@@ -217,6 +221,12 @@ if (token) {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
+.load {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
 
 .form {
   display: flex;
