@@ -17,7 +17,7 @@ const emailError = ref('')
 const passwordError = ref('')
 const nameError = ref('')
 const avatarError = ref('')
-const ojidanie = ref(false)
+const ojidanie = ref(true)
 
 const validate = () => {
   let valid = true
