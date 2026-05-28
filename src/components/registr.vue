@@ -170,6 +170,7 @@ if (token) {
 </script>
 
 <template>
+    <div v-if="ojidanie == true" class="load_block"></div>
   <div class="page">
     <div class="card">
       <h1 class="h1">Создать аккаунт</h1>
@@ -206,7 +207,7 @@ if (token) {
       </form>
     </div>
   </div>
-  <div v-if="ojidanie == true" class="load_block"></div>
+
   <loadingsupper v-if="ojidanie == true" class="load" ></loadingsupper>
 </template>
 
